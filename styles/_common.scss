@@ -1,12 +1,19 @@
 @mixin container($screen-size: lg) {
     margin: 0 auto;
-    @if $screen-size == sm {
+
+    @if $screen-size ==sm {
         max-width: 320px
-    } @else if $screen-size == md {
+    }
+
+    @else if $screen-size ==md {
         max-width: 720px
-    } @else if $screen-size == lg {
+    }
+
+    @else if $screen-size ==lg {
         max-width: 1024px
-    } @else {
+    }
+
+    @else {
         max-width: 1280px
     }
 }
@@ -15,28 +22,27 @@ body {
     min-height: 100vh;
     display: grid;
     grid-template:
-    "header header"
-    "main main"
-    "footer footer";
+        "header header"
+        "main main"
+        "footer footer";
 
     @media screen and (min-width: 768px) {
-        grid-template: 
-        "header header"
-        "aside main" 1fr 
-        "footer footer" 50px / 20% 1fr;
+        grid-template:
+            "header header"
+            "aside main" 1fr
+            "footer footer" 50px / 20% 1fr;
     }
-    
 }
 
 aside {
     grid-area: aside;
     display: none;
     background-color: #EBECEC;
+
     @media screen and (min-width: 768px) {
-        grid-template: 
-        "header header"
-        "aside main" 1fr 
-        "footer footer" 50px / 20% 1fr;
+        grid-template:
+            "header header"
+            "aside main" 1fr "footer footer" 50px / 20% 1fr;
         display: flex;
         flex-direction: column;
     }
@@ -54,7 +60,7 @@ ul {
     gap: 0.5rem
 }
 
-ul > li > a {
+ul>li>a {
     padding: 0.5rem;
 }
 
@@ -76,7 +82,8 @@ a {
 }
 
 
-.btn, .btn-price {
+.btn,
+.btn-price {
     height: 46px;
     border: none;
     background-color: #A81444;
