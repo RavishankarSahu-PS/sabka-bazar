@@ -58,6 +58,10 @@ const loadProducts = async () => {
                     style: "currency"
                 }).format(element.price)}</span>
                 <button class="btn">Buy Now</button>
+                <button class="btn-price">Buy Now @ ${new Intl.NumberFormat("en-IN", {
+                    currency: "INR",
+                    style: "currency"
+                }).format(element.price)}</button>
             `;
 
             productsSection.appendChild(itemsDiv);
@@ -65,7 +69,7 @@ const loadProducts = async () => {
 
         console.log(json);
     } catch (error) {
-        
+
     }
 }
 
