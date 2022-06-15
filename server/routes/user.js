@@ -3,10 +3,11 @@ var router = express.Router();
 
 const usersData = [
     {
-        name: "U1",
+        firstName: "U1",
+        lastName: "S1",
         email: "u1@test.com",
         password: "u1",
-        id: "u1"
+        id: 1,
     },
 ];
 /* GET User data */
@@ -30,8 +31,20 @@ router.post('/login', function (req, res, next) {
 
 //Add user information
 router.post('/register', function (req, res, next) {
-    usersData.push(req.body)
-    res.json(cart);
+    const newUser = req.body;
+    try {
+        const validateUser = usersData.filter(user => user.email === newUser.email);
+        if (validateUser.length > 0) {
+            res.json({ message: `Email ${newUser.email} already exit. Please try with some other email.` });
+        } else {
+            newUser.id = usersData.length + 1
+            usersData.push(newUser)
+            // delete newUser.password;
+            res.json({ userData: newUser})
+        }
+    } catch (error) {
+        res.json({ message: "some things went wrong...", error });
+    }
 });
 
 module.exports = router;

@@ -2,36 +2,34 @@
 @use "header";
 @use "footer";
 
-
-main {
-    display: flex;
-    margin-bottom: .4rem!important;
-    align-items: center;
-}
-
-main > div,
-main > form {
-    flex: 1;
-    margin-right: .5rem;
-}
-
-.container{
-    margin: 0 auto;
-    max-width: 1024px
-}
-
 body {
     min-height: 100vh;
     display: grid;
     grid-template:
-    "header header"
-    "main main"
-    "footer footer";
-}
+        "header header"
+        "main main"
+        "footer footer";
 
+    main {
+        display: flex;
+        margin-bottom: .4rem !important;
+        align-items: center;
+    }
+
+    .container {
+        margin: 0 auto;
+        max-width: 1024px
+    }
+
+    main>div,
+    main>form {
+        flex: 1;
+        margin-right: .5rem;
+    }
 
 form {
     display: block;
+
     .form-field {
         width: 100%;
         position: relative;
@@ -65,19 +63,19 @@ form {
     }
 
     .form-field__input:placeholder-shown {
-        ~ .form-field__label  {
+        ~.form-field__label {
             font-size: 1.2rem;
             transform: translateY(0);
         }
     }
 
     .form-field__input:focus {
-        ~ .form-field__label  {
+        ~.form-field__label {
             font-size: 0.75rem;
             transform: translateY(-1rem);
         }
 
-        ~ .form-field__bar  {
+        ~.form-field__bar {
             transform: scaleX(150)
         }
     }
@@ -100,7 +98,7 @@ form {
         bottom: 0;
         left: 0;
         right: 0;
-        top:0;
+        top: 0;
         z-index: 1;
         width: 1%;
         margin: 0 auto;
@@ -122,4 +120,4 @@ form {
     width: 100%;
 }
 
-
+}
