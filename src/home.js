@@ -117,14 +117,17 @@ var btn = document.getElementById("openModal");
 var span = document.getElementById("close");
 
 btn.onclick = function () {
+  let totalCartAmount=0
   modal.style.display = "block";
   const cartItem = document.getElementById("cart_item");
   const cartTitle = document.getElementById("cart-title");
   cartTitle.innerHTML = `My Cart (${cartData.length} item)`;
+  const totalCartAmountElement = document.getElementById("total_cart_amount")
 
   if (cartData.length > 0) {
     for (let i = 0; i <= cartData.length; i++) {
       const element = cartData[i]
+      totalCartAmount = totalCartAmount + element.price;
       const div = document.createElement("div")
       div.classList = "cart-list"
       div.innerHTML = `
@@ -140,7 +143,8 @@ btn.onclick = function () {
             </div>
       </div>
       `
-      cartItem.appendChild(div)
+      cartItem.appendChild(div);
+      totalCartAmountElement.innerHTML = `Rs. ${totalCartAmount}  > `
     }
   } else {
     const div = document.createElement("div")
