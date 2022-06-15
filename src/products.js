@@ -38,7 +38,7 @@ const loadProducts = async () => {
 
       itemsDiv.innerHTML = `
                 <h2>${element.name}</h2>
-                <img src="${element.imageURL}" alt="${element.name} Image" />
+                <img src="${element.imageURL}" alt="${element.name}" />
                 <p>${element.description}</p>
                 <span>MRP ${new Intl.NumberFormat("en-IN", {
         currency: "INR",
@@ -87,7 +87,7 @@ btn.onclick = function () {
       div.classList = "cart-list"
       div.innerHTML = `
       <div class="cart-list-item">
-            <img src=${element.imageURL} alt="${element.name} Image"/>
+            <img src=${element.imageURL} alt="${element.name}"/>
             <div class="dlsITem">
               <text>${element.name}</text> </br>
               <button>-</button> ${countOfItem}

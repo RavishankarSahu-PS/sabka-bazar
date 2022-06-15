@@ -16,7 +16,7 @@ const loadHomeData = async () => {
 
             itemsDiv.innerHTML = `
                             <div>
-                                <img src=${element.imageUrl} alt="${element.name} Image">
+                                <img src=${element.imageUrl} alt="${element.name}">
                             </div>
                             <div>
                                 <h1>${element.name}</h1>
@@ -127,7 +127,7 @@ btn.onclick = function () {
       div.classList = "cart-list"
       div.innerHTML = `
       <div class="cart-list-item">
-            <img src=${element.imageURL} alt="${element.name} Image"/>
+            <img src=${element.imageURL} alt="${element.name}"/>
             <div class="dlsITem">
               <text>${element.name}</text> </br>
               <button>-</button> ${countOfItem}
