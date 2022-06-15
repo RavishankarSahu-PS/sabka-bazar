@@ -1,4 +1,5 @@
 import "../styles/home.scss";
+import "../styles/cart.scss";
 
 const loadHomeData = async () => {
     try {
@@ -33,30 +34,23 @@ const loadHomeData = async () => {
 loadHomeData()
 
 
-////////////////////////////////git
 
 let url='http://localhost:3200/'
 
 let sectionForBanners = document.getElementById("section-for-banners")
-
 let loadedBanners=[]
-
 let slideIndex=0
 let node;
-
 const bannerLoader = async ()=>{
     try {
         const response = await fetch(`${url}banner`);
         loadedBanners = await response.json();
         printBanners(loadedBanners)
-        console.log(loadedBanners,"<<<<loadedBanners")
     }
     catch(error){
         console.log(error)
     }
 }
-
-
 
 const printBanners = data => {
 
@@ -71,33 +65,13 @@ const printBanners = data => {
         imageOfBanner.alt = data[i].bannerImageAlt
 
         banner.hidden = true
-
-        // let nextButton = document.createElement('button')
-        // let prevButton = document.createElement('button')
-
-        // nextButton.classList.add('w3-button', 'w3-display-right')
-        // prevButton.classList.add('w3-button', 'w3-display-left')
-        // nextButton.innerText = ">"
-        // prevButton.innerText = "<"
-
-        // nextButton.addEventListener('click',plusDivs(+1))
-        // prevButton.addEventListener('click',plusDivs(-1))
-
         banner.appendChild(imageOfBanner)
-
         sectionForBanners.appendChild(banner)
-        // sectionForBanners.appendChild(nextButton)
-        // sectionForBanners.appendChild(prevButton)
 
     }
-    // showNextImage();
     bannerImageDisplay(slideIndex)
 }
 
-
-// const showNextImage= ()=> {
-//   bannerImageSelection(slideIndex);
-// }
 
 
 
@@ -122,4 +96,73 @@ const printBanners = data => {
   }, 5000);
 }
 
+
+//..........................................................................
+// For Cart ..................................................................
+
+let modal = document.getElementById("cart_modal");
+let cartData = [];
+let countOfItem = 1
+
+const getCartData = async () => {
+  const url = "http://localhost:3200/cart"
+  const jsonData = await fetch(url);
+  const resData = await jsonData.json();
+  const itemCount = document.getElementById("itemCount")
+  itemCount.innerHTML = resData.length + " Item";
+  cartData = resData;
+}
+
+var btn = document.getElementById("openModal");
+var span = document.getElementById("close");
+
+btn.onclick = function () {
+  modal.style.display = "block";
+  const cartItem = document.getElementById("cart_item")
+
+  if (cartData.length > 0) {
+    for (let i = 0; i <= cartData.length; i++) {
+      const element = cartData[i]
+      const div = document.createElement("div")
+      div.classList = "cart-list"
+      div.innerHTML = `
+      <div class="cart-list-item">
+            <img src=${element.imageURL} alt="${element.name} Image"/>
+            <div class="dlsITem">
+              <text>${element.name}</text> </br>
+              <button>-</button> ${countOfItem}
+              <button>+</button><text> &times; Rs.${element.price}</text>
+            </div>
+            <div>
+                Rs.${element.price * countOfItem}
+            </div>
+      </div>
+      `
+      cartItem.appendChild(div)
+    }
+  } else {
+    const div = document.createElement("div")
+    cartItem.classList = "no-item-list"
+    div.innerHTML = `
+      <div>
+          <h2>No items in your cart</h2>
+         <span>your favorite items are just a click away</span>
+      </div>
+      `
+    cartItem.appendChild(div)
+  }
+  element.style.display = "block"
+}
+
+span.onclick = function () {
+  modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+getCartData();
 bannerLoader()
