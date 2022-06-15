@@ -79,6 +79,8 @@ var span = document.getElementById("close");
 btn.onclick = function () {
   modal.style.display = "block";
   const cartItem = document.getElementById("cart_item")
+  const cartTitle = document.getElementById("cart-title")
+  cartTitle.innerHTML = `My Cart (${cartData.length} item)`
 
   if (cartData.length > 0) {
     for (let i = 0; i <= cartData.length; i++) {
